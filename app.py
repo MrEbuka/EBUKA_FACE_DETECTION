@@ -6,6 +6,11 @@ import cv2 #type: ignore
 import sqlite3
 import os
 
+# Configure TensorFlow for low memory usage
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
+
 app = Flask(__name__)
 
 # Function to create model architecture manually
@@ -79,8 +84,9 @@ def predict():
         img = cv2.resize(img, (48,48))
         img = img.reshape(1,48,48,1) / 255.0
 
-        # Predict emotion
-        emotion_index = np.argmax(model.predict(img))
+        # Predict emotion with reduced memory
+        prediction = model.predict(img, verbose=0)
+        emotion_index = np.argmax(prediction)
         emotion = emotion_labels[emotion_index]
 
         # Log to database
@@ -93,4 +99,5 @@ def predict():
     return "No file uploaded"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)

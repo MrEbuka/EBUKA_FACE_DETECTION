@@ -225,7 +225,7 @@ This project is licensed under the MIT License.
 ## Contact
 
 Your Name - somadetoluwani@gmail.com
-Project Link: [https://github.com/adesmith001/FACE_DETECTION](https://github.com/adesmith001/FACE_DETECTION)
+Project Link: [https://github.com/Adesmith001/FACE_DETECTION.git](https://github.com/Adesmith001/FACE_DETECTION.git)
 
 ---
 

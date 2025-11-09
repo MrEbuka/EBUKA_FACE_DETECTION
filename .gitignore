@@ -39,7 +39,7 @@ Thumbs.db
 desktop.ini
 
 # Large Model Files
-*.h5
+# *.h5  # Commented out - we need face_emotionModel.h5 for deployment
 *.hdf5
 *.pkl
 *.pth
